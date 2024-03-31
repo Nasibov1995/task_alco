@@ -1,4 +1,3 @@
-# views.py
 from rest_framework import permissions, status
 from rest_framework.response import Response
 import xlsxwriter
@@ -13,7 +12,6 @@ from rest_framework.permissions import IsAdminUser
 
 class UserExtractionAPIView(generics.GenericAPIView):
     permission_classes = [IsAdminUser]
-
     def get(self, request):
         # Get the list of user IDs from query parameters
         user_ids = request.GET.getlist('user_ids', [])
