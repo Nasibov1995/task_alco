@@ -4,8 +4,8 @@ from .models import CustomUser,BlockedIP
 
 @admin.register(BlockedIP)
 class BlockedIPAdmin(admin.ModelAdmin):
-    list_display = ('ip_address', 'timestamp')
-    search_fields = ('ip_address',)
+    list_display = ('blocked_ip_address', 'timestamp')
+    search_fields = ('blocked_ip_address',)
     
 
 

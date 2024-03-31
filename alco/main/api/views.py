@@ -57,7 +57,7 @@ class BlockIPApi(GenericAPIView):
             ip_adresses = BlockedIP.objects.all()
             ip_address = 0
             for ip in ip_adresses:
-                ip_address = ip.ip_address
+                ip_address = ip.blocked_ip_address
                 
             # Check if the IP address is associated with any active user
             user_with_ip = CustomUser.objects.filter(ip_address=ip_address, is_active=True)

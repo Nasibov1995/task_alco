@@ -8,6 +8,6 @@ class BlockIPMiddleware:
 
     def __call__(self, request):
         ip_address = request.META.get('REMOTE_ADDR')
-        if BlockedIP.objects.filter(ip_address=ip_address).exists():
+        if BlockedIP.objects.filter(blocked_ip_address=ip_address).exists():
             return HttpResponseForbidden("Your IP is blocked.")
         return self.get_response(request)

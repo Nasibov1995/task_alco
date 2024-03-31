@@ -65,7 +65,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     
     
 class BlockedIP(models.Model):
-    ip_address = models.GenericIPAddressField()
+    blocked_ip_address = models.GenericIPAddressField()
     timestamp = models.DateTimeField(auto_now_add=True,db_index=True)
     
     
