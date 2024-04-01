@@ -1,8 +1,10 @@
 from django.urls import path
-from main.api.views import UserExtractionAPIView,BlockIPApi
+from main.api.views import UserExtractionAPIView,BlockIPApi,UserListAPIView
 
 urlpatterns = [
     
+    # GET users
+    path("",UserListAPIView.as_view()),
     
     # GET /download-users/?user_ids=1,2,3   -   Specific user's information
     # GET /download-users/                  -   All user's information

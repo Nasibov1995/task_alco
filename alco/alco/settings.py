@@ -122,7 +122,7 @@ USE_TZ = True
 AUTH_USER_MODEL = "main.CustomUser"
 
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_BROKER_URL = 'redis://127.0.0.1:6380'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
@@ -135,6 +135,13 @@ CACHES = {
         "LOCATION": "redis://127.0.0.1:6379",
     }
 }
+
+import os
+
+REDIS_HOST = os.environ.get('REDIS_HOST', '127.0.0.1')
+
+
+
 
 REST_FRAMEWORK = {
     

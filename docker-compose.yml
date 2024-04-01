@@ -1,3 +1,4 @@
+
 version: '3'
 
 services:
@@ -5,6 +6,26 @@ services:
     build: .
     command: python alco/manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/app
+      - .:/code
     ports:
       - "8000:8000"
+    depends_on:
+      - redis
+    environment:
+      - DJANGO_SETTINGS_MODULE=alco.settings
+
+  celery:
+    build: .
+    command: sh -c "celery -A alco worker -l info & celery -A alco beat -l info"
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+    environment:
+      - DJANGO_SETTINGS_MODULE=alco.settings
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+

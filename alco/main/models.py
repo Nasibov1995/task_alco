@@ -71,3 +71,5 @@ class BlockedIP(models.Model):
     
     def formatted_created_at(self):
         return self.timestamp.astimezone(timezone.now())
+    
+    

@@ -6,8 +6,13 @@ from main.models import CustomUser,BlockedIP
 from main.serializers import CustomUserSerializer,BlockedIPSerializer
 from rest_framework import generics
 import io
-from rest_framework.generics import GenericAPIView,CreateAPIView
+from rest_framework.generics import GenericAPIView,CreateAPIView,ListAPIView
 from rest_framework.permissions import IsAdminUser
+
+
+class UserListAPIView(ListAPIView):
+    serializer_class = CustomUserSerializer
+    queryset = CustomUser.objects.all()
 
 
 class UserExtractionAPIView(generics.GenericAPIView):
