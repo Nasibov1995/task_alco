@@ -10,6 +10,10 @@ WORKDIR /code
 # Install dependencies
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
+COPY alco/ alco/
+
+
+
 
 # Copy the current directory contents into the container at /code/
 COPY . /code/

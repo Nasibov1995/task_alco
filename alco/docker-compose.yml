@@ -1,0 +1,46 @@
+
+version: '3'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    environment:
+      - ALLOWED_HOSTS=localhost,127.0.0.1
+
+  redis:
+    build:
+      context: .
+    restart: "always"
+    ports:
+      - "6379:6379"
+
+  celery:
+    restart: "always"
+    build: .
+    command: celery -A alco worker -l INFO 
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+    environment:
+      - ALLOWED_HOSTS=localhost,127.0.0.1
+
+  celery-beat:
+    restart: "always"
+    build: .
+    command: celery -A alco  beat -l INFO
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+    environment:
+      - ALLOWED_HOSTS=localhost,127.0.0.1
+ 
+

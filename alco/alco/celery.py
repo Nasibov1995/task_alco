@@ -18,7 +18,7 @@ app.conf.beat_schedule = {
     
     'cron':{
         'task':'celery_tasks.tasks.unblock_ip',
-        'schedule':crontab(hour="*/1")
+        'schedule':crontab(minute="*/1")
     }
     
 }

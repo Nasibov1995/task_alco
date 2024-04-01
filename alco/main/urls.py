@@ -6,7 +6,7 @@ urlpatterns = [
     # GET users
     path("",UserListAPIView.as_view()),
     
-    # GET /download-users/?user_ids=1,2,3   -   Specific user's information
+    # GET /download-users/?user_ids=2   -   Specific user's information
     # GET /download-users/                  -   All user's information
     path('download-users/', UserExtractionAPIView.as_view()),
     

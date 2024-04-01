@@ -9,7 +9,7 @@ def unblock_ip():
     try:
         
         
-        ip_adresses = BlockedIP.objects.filter(timestamp__lte = Now() - timedelta(hours=5))
+        ip_adresses = BlockedIP.objects.filter(timestamp__lte = Now() - timedelta(seconds=50))
         ip_address = 0
         for ip in ip_adresses:
             ip_address = ip.blocked_ip_address
@@ -21,7 +21,7 @@ def unblock_ip():
             user_with_ip.save()
             
 
-        BlockedIP.objects.filter(timestamp__lte = Now() - timedelta(hours=5)).delete()
+        BlockedIP.objects.filter(timestamp__lte = Now() - timedelta(seconds=50)).delete()
         
         return f"IP address {ip_address} unblocked successfully"
     except BlockedIP.DoesNotExist:
