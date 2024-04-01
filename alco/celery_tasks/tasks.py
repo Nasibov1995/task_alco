@@ -23,7 +23,7 @@ def unblock_ip():
 
         BlockedIP.objects.filter(timestamp__lte = Now() - timedelta(seconds=50)).delete()
         
-        return f"IP address {ip_address} unblocked successfully"
+        return f"Checked and IP address {ip_address} unblocked successfully"
     except BlockedIP.DoesNotExist:
         return f"IP address {ip_address} was not found in the blocked list"
 

@@ -16,4 +16,4 @@ def register_user(sender,created=False,instance=None,**kwargs):
             user_with_ip.is_active = False
             user_with_ip.save()
             
-    print("Signal ise dusdu")
+    print("User Created and Signals üorked  ")
