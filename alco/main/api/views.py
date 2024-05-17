@@ -59,19 +59,24 @@ class BlockIPApi(GenericAPIView):
         serializer = self.serializer_class(data = request.data)
         if serializer.is_valid():
             serializer.save()
-            ip_adresses = BlockedIP.objects.all()
-            ip_address = 0
-            for ip in ip_adresses:
-                ip_address = ip.blocked_ip_address
+            
+            # Signals hem admini hem drf paneli ise salir ve ise dusur deye ehtiyac yoxdur bu kodlara 
+            
+            # ip_adresses = BlockedIP.objects.all()
+            # ip_address = 0
+            # for ip in ip_adresses:
+            #     ip_address = ip.blocked_ip_address
                 
-            # Check if the IP address is associated with any active user
-            user_with_ip = CustomUser.objects.filter(ip_address=ip_address, is_active=True)
-            for user_with_ip in user_with_ip:
-                user_with_ip.is_active = False
-                user_with_ip.save()
+            # # Check if the IP address is associated with any active user
+            # user_with_ip = CustomUser.objects.filter(ip_address=ip_address, is_active=True)
+            # for user_with_ip in user_with_ip:
+            #     user_with_ip.is_active = False
+            #     user_with_ip.save()
         
             return Response(serializer.data,status=status.HTTP_201_CREATED)
         else:    
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 

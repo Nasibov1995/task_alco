@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     "main.apps.MainConfig",
     "celery_tasks.apps.CeleryTasksConfig",
     "django_celery_results",
-    "rest_framework"
+    "rest_framework",
+    "drf_yasg"
     
 ]
 
@@ -133,6 +134,8 @@ CELERY_RESULT_BACKEND = 'django-db'
 
 
 REST_FRAMEWORK = {
+    
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.AnonRateThrottle',
